@@ -1,16 +1,53 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+ext {
+    supportLibVersion = '25.3.1'
+    retrofitVersion = '2.1.0'
+    okHttpVersion = '3.0.1'
+    daggerVersion = '2.8'
+    stethoVersion = '1.5.0'
+}
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 25
     buildToolsVersion "25.0.3"
+
     defaultConfig {
         applicationId "com.leopold.mvp"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    aaptOptions {
+        cruncherEnabled true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'GoogleAppIndexingWarning'
+        return void
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2048M"
+    }
+
+    kapt {
+        generateStubs = true
+    }
+
+    compileOptions.incremental = false
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,9 +58,35 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    testCompile 'junit:junit:4.12'
+
+    // Support Library
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    compile "com.android.support:cardview-v7:$supportLibVersion"
+    compile "com.android.support:design:$supportLibVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibVersion"
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // Dagger 2.0
+    compile "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // retrofit
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    compile "com.squareup.okhttp3:okhttp-urlconnection:$okHttpVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    // Glide
+    compile 'com.github.bumptech.glide:glide:3.8.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 }
