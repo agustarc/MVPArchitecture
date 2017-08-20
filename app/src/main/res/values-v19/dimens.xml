@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Height -->
+    <dimen name="height_status_bar">24dp</dimen>
+    <dimen name="height_status_bar_toolbar">80dp</dimen>
+
+</resources>
