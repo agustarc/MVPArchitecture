@@ -44,8 +44,6 @@ class NetworkModule {
         val logger: HttpLoggingInterceptor = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) {
             logger.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            logger.level = HttpLoggingInterceptor.Level.NONE
         }
 
         return OkHttpClient.Builder()

@@ -7,12 +7,8 @@ import com.leopold.mvp.presenter.NetworkPresenterView
 /**
  * @author Leopold
  */
-class MainPresenter constructor(context: Activity) : BasePresenter() {
-    private var view: View? = context as View
-
-    override fun destroy() {
-        view = null
-    }
+class MainPresenter constructor(context: Activity) : BasePresenter<MainPresenter.View>() {
+    override var view: View? = context as View
 
     interface View : NetworkPresenterView
 }

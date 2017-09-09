@@ -9,9 +9,9 @@ import java.net.SocketTimeoutException
  * @author Leopold
  */
 @Suppress("unused")
-abstract class BasePresenter {
+abstract class BasePresenter<T> {
     private var subscriptions: CompositeSubscription? = CompositeSubscription()
-    abstract fun destroy(): Unit
+    abstract var view: T?
 
     @CallSuper
     fun onCreate(): Unit {}
@@ -29,7 +29,7 @@ abstract class BasePresenter {
     fun onDestroy(): Unit {
         subscriptions?.unsubscribe()
         subscriptions = null
-        destroy()
+        view = null
     }
 
     protected fun isTimeoutError(throwable: Throwable): Boolean {

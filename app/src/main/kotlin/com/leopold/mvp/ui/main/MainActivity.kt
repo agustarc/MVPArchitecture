@@ -19,16 +19,15 @@ import javax.inject.Inject
 /**
  * @author Leopold
  */
-class MainActivity : PresenterActivity(), MainPresenter.View {
+class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View {
     private lateinit var drawerToggle: ActionBarDrawerToggle
-
     @Inject lateinit var presenter: MainPresenter
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
     }
 
-    override fun getPresenter(): BasePresenter? {
+    override fun getPresenter(): BasePresenter<MainPresenter.View>? {
         return presenter
     }
 

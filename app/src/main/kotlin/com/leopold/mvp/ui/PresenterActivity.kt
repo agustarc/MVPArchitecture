@@ -6,12 +6,11 @@ import com.leopold.mvp.presenter.BasePresenter
 /**
  * @author Leopold
  */
-abstract class PresenterActivity : InjectableActivity() {
-    protected abstract fun getPresenter(): BasePresenter?
+abstract class PresenterActivity<T> : InjectableActivity() {
+    protected abstract fun getPresenter(): BasePresenter<T>?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         getPresenter()?.onCreate()
     }
 
