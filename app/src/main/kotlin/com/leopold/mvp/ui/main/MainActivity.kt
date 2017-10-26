@@ -53,9 +53,10 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
     private fun setDrawerToggle() {
         setSupportActionBar(toolbar)
 
-        drawerToggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.general_empty, R.string.general_empty)
-        drawerToggle.syncState()
-        drawer.addDrawerListener(drawerToggle)
+        drawerToggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.general_empty, R.string.general_empty).apply {
+            syncState()
+            drawer.addDrawerListener(this)
+        }
     }
 
     override fun onBackPressed() {

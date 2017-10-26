@@ -44,9 +44,11 @@ class GlideConfiguration : GlideModule {
         val memoryCacheSize: Int = (BUFFER_FACTOR * defaultMemoryCacheSize).toInt()
         val bitmapCacheSize: Int = (BUFFER_FACTOR * defaultBitmapPoolSize).toInt()
 
-        builder?.setDecodeFormat(DecodeFormat.PREFER_RGB_565)
-        builder?.setDiskCache(InternalCacheDiskCacheFactory(context, "image_manager_disk_cache", DISK_CACHE_SIZE))
-        builder?.setMemoryCache(LruResourceCache(memoryCacheSize))
-        builder?.setBitmapPool(LruBitmapPool(bitmapCacheSize))
+        builder?.run {
+            setDecodeFormat(DecodeFormat.PREFER_RGB_565)
+            setDiskCache(InternalCacheDiskCacheFactory(context, "image_manager_disk_cache", DISK_CACHE_SIZE))
+            setMemoryCache(LruResourceCache(memoryCacheSize))
+            setBitmapPool(LruBitmapPool(bitmapCacheSize))
+        }
     }
 }
