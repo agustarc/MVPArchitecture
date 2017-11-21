@@ -14,19 +14,19 @@ abstract class BasePresenter<T> {
     abstract var view: T?
 
     @CallSuper
-    fun onCreate(): Unit {}
+    open fun onCreate() {}
 
     @CallSuper
-    fun onResume(): Unit {}
+    open fun onResume() {}
 
     @CallSuper
-    fun onPause(): Unit {}
+    open fun onPause() {}
 
     @CallSuper
-    fun onStop(): Unit {}
+    open fun onStop() {}
 
     @CallSuper
-    fun onDestroy(): Unit {
+    fun onDestroy() {
         subscriptions?.unsubscribe()
         subscriptions = null
         view = null
@@ -36,7 +36,7 @@ abstract class BasePresenter<T> {
         return throwable is SocketTimeoutException
     }
 
-    protected fun addToSubscribe(subscription: Subscription): Unit {
+    protected fun addToSubscribe(subscription: Subscription) {
         subscriptions?.add(subscription)
     }
 }

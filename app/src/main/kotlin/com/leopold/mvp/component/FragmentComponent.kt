@@ -15,5 +15,5 @@ import dagger.Component
         FragmentModule::class)
 )
 interface FragmentComponent  {
-    fun inject(context: NavigationFragment): Unit
+    fun inject(context: NavigationFragment)
 }

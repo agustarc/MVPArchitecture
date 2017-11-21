@@ -37,7 +37,7 @@ class GlideConfiguration : GlideModule {
     }
 
     override fun applyOptions(context: Context?, builder: GlideBuilder?) {
-        val calculator: MemorySizeCalculator = MemorySizeCalculator(context)
+        val calculator = MemorySizeCalculator(context)
         val defaultMemoryCacheSize: Int = calculator.memoryCacheSize
         val defaultBitmapPoolSize: Int = calculator.bitmapPoolSize
 

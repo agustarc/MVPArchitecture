@@ -15,5 +15,5 @@ import dagger.Component
         ActivityModule::class)
 )
 interface ActivityComponent {
-    fun inject(context: MainActivity): Unit
+    fun inject(context: MainActivity)
 }
