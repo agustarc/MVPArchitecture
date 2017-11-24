@@ -1,8 +1,8 @@
 package com.leopold.mvp.presenter
 
 import android.support.annotation.CallSuper
-import rx.Subscription
-import rx.subscriptions.CompositeSubscription
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import java.net.SocketTimeoutException
 
 /**
@@ -10,7 +10,7 @@ import java.net.SocketTimeoutException
  */
 @Suppress("unused")
 abstract class BasePresenter<T> {
-    private var subscriptions: CompositeSubscription? = CompositeSubscription()
+    private var disposables: CompositeDisposable? = CompositeDisposable()
     abstract var view: T?
 
     @CallSuper
@@ -27,8 +27,8 @@ abstract class BasePresenter<T> {
 
     @CallSuper
     fun onDestroy() {
-        subscriptions?.unsubscribe()
-        subscriptions = null
+        disposables?.clear()
+        disposables = null
         view = null
     }
 
@@ -36,7 +36,7 @@ abstract class BasePresenter<T> {
         return throwable is SocketTimeoutException
     }
 
-    protected fun addToSubscribe(subscription: Subscription) {
-        subscriptions?.add(subscription)
+    protected fun addToDisposable(disposable: Disposable) {
+        disposables?.add(disposable)
     }
 }

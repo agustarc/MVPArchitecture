@@ -1,15 +1,15 @@
 package com.leopold.mvp.presenter
 
 import android.support.annotation.CallSuper
-import rx.Subscription
-import rx.subscriptions.CompositeSubscription
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import java.net.SocketTimeoutException
 
 /**
  * @author Leopold
  */
 abstract class BaseFragmentPresenter<T> {
-    private var subscriptions: CompositeSubscription? = CompositeSubscription()
+    private var disposables: CompositeDisposable? = CompositeDisposable()
     abstract var view: T?
 
     @CallSuper
@@ -26,8 +26,8 @@ abstract class BaseFragmentPresenter<T> {
 
     @CallSuper
     open fun onDestroyView() {
-        subscriptions?.unsubscribe()
-        subscriptions = null
+        disposables?.clear()
+        disposables = null
         view = null
     }
 
@@ -35,7 +35,7 @@ abstract class BaseFragmentPresenter<T> {
         return throwable is SocketTimeoutException
     }
 
-    protected fun addToSubscribe(subscription: Subscription) {
-        subscriptions?.add(subscription)
+    protected fun addToDisposable(disposable: Disposable) {
+        disposables?.add(disposable)
     }
 }
