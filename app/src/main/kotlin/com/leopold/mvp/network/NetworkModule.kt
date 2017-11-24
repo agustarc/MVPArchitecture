@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.leopold.mvp.App
 import com.leopold.mvp.BuildConfig
+import com.leopold.mvp.network.error.Rx2ErrorHandlingCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.*
@@ -34,7 +35,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGson(): Gson {
+    fun provideGs(): Gson {
         return GsonBuilder().create()
     }
 
@@ -59,9 +60,10 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(gson: Gson, client: OkHttpClient): Retrofit {
+    fun provideRetrofit(gs: Gson, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(Rx2ErrorHandlingCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gs))
                 .baseUrl(baseUrl)
                 .client(client)
                 .build()

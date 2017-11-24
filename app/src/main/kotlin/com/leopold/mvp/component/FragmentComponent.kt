@@ -2,7 +2,7 @@ package com.leopold.mvp.component
 
 import com.leopold.mvp.FragmentModule
 import com.leopold.mvp.annotation.UserScope
-import com.leopold.mvp.presenter.PresenterModule
+import com.leopold.mvp.presenter.FragmentPresenterModule
 import com.leopold.mvp.ui.main.NavigationFragment
 import dagger.Component
 
@@ -11,7 +11,7 @@ import dagger.Component
  */
 @UserScope
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(
-        PresenterModule::class,
+        FragmentPresenterModule::class,
         FragmentModule::class)
 )
 interface FragmentComponent  {

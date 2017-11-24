@@ -6,7 +6,7 @@ import com.leopold.mvp.FragmentModule
 import com.leopold.mvp.R
 import com.leopold.mvp.component.DaggerFragmentComponent
 import com.leopold.mvp.presenter.BaseFragmentPresenter
-import com.leopold.mvp.presenter.PresenterModule
+import com.leopold.mvp.presenter.FragmentPresenterModule
 import com.leopold.mvp.presenter.main.NavigationPresenter
 import com.leopold.mvp.ui.PresenterFragment
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class NavigationFragment : PresenterFragment<NavigationPresenter.View>(), Naviga
         DaggerFragmentComponent.builder()
                 .appComponent(App.getAppComponent(fragment.context))
                 .fragmentModule(FragmentModule(this))
-                .presenterModule(PresenterModule())
+                .fragmentPresenterModule(FragmentPresenterModule())
                 .build().inject(this)
     }
 

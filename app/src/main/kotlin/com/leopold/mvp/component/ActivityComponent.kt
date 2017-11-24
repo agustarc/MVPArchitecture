@@ -2,7 +2,7 @@ package com.leopold.mvp.component
 
 import com.leopold.mvp.ActivityModule
 import com.leopold.mvp.annotation.UserScope
-import com.leopold.mvp.presenter.PresenterModule
+import com.leopold.mvp.presenter.ActivityPresenterModule
 import com.leopold.mvp.ui.main.MainActivity
 import dagger.Component
 
@@ -11,7 +11,7 @@ import dagger.Component
  */
 @UserScope
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(
-        PresenterModule::class,
+        ActivityPresenterModule::class,
         ActivityModule::class)
 )
 interface ActivityComponent {
