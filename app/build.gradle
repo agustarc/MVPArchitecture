@@ -41,6 +41,11 @@ android {
         javaMaxHeapSize "2048M"
     }
 
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        return void
+    }
+
     kapt {
         generateStubs = true
     }

@@ -26,7 +26,7 @@ class RetryPolicy {
         }
 
         fun none(): BiPredicate<Int, Throwable> {
-            return BiPredicate { retryCount, throwable ->  false }
+            return BiPredicate { _, _ ->  false }
         }
     }
 }
