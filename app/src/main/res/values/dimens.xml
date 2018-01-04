@@ -5,4 +5,13 @@
     <dimen name="height_status_bar">0dp</dimen>
     <dimen name="height_status_bar_toolbar">56dp</dimen>
 
+    <!-- Margin -->
+    <dimen name="margin_activity">8dp</dimen>
+    <dimen name="margin_general">19dp</dimen>
+
+    <!-- Text Size -->
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
+
 </resources>

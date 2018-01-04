@@ -24,7 +24,7 @@ class NetworkModule {
     private val CONNECT_TIMEOUT: Long = 30
     private val WRITE_TIMEOUT: Long = 30
     private val READ_TIMEOUT: Long = 30
-    private val baseUrl: String = "your base url"
+    private val baseUrl: String = "https://api.github.com"
 
     @Provides
     @Singleton

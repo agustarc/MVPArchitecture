@@ -1,10 +1,10 @@
 package com.leopold.mvp.network
 
-import com.leopold.mvp.network.api.UserApi
+import com.leopold.mvp.annotation.UserScope
+import com.leopold.mvp.network.api.GitHubApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 /**
  * @author Leopold
@@ -13,9 +13,9 @@ import javax.inject.Singleton
 class ApiModule {
 
     @Provides
-    @Singleton
-    fun provideUserApi(retrofit: Retrofit): UserApi {
-        return retrofit.create(UserApi::class.java)
+    @UserScope
+    fun provideGitHubApi(retrofit: Retrofit): GitHubApi {
+        return retrofit.create(GitHubApi::class.java)
     }
 
 }
