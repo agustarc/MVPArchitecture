@@ -1,4 +1,4 @@
-package com.leopold.mvp.model
+package com.leopold.mvp.model.repository
 
 import com.google.gson.annotations.SerializedName
 

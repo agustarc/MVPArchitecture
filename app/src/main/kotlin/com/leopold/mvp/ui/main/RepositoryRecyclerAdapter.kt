@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.leopold.mvp.R
-import com.leopold.mvp.model.Repository
+import com.leopold.mvp.model.repository.Repository
 import com.leopold.mvp.ui.widget.recycler.BaseRecyclerAdapter
 import com.leopold.mvp.ui.widget.recycler.BaseViewHolder
 import com.leopold.mvp.ui.widget.recycler.OnItemClickListener
@@ -37,18 +37,20 @@ class RepositoryRecyclerAdapter constructor(context: Context, repositories: Arra
 
     private fun onBindRepositoryViewHolder(holder: RepositoryViewHolder, position: Int) {
         getItem(position)?.run {
-            setName(holder, this)
+            setName(holder, position, this)
             setDescription(holder, this)
         }
     }
 
-    private fun setName(holder: RepositoryViewHolder, repository: Repository) {
-        holder.name.text = repository.name
+    private fun setName(holder: RepositoryViewHolder, position: Int, repository: Repository) {
+        holder.name.text = position.inc().toString().plus(". ").plus(repository.name)
     }
 
     private fun setDescription(holder: RepositoryViewHolder, repository: Repository) {
-        repository.description?.run {
-            holder.description.text = this
+        if (repository.description.isNullOrEmpty()) {
+            holder.description.text = ""
+        } else {
+            holder.description.text = repository.description
         }
     }
 

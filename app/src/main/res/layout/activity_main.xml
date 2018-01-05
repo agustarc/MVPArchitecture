@@ -36,6 +36,14 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
+        <ProgressBar
+            android:id="@+id/main_more_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_general"
+            android:layout_gravity="center_horizontal|bottom"
+            android:visibility="gone"/>
+
     </android.support.design.widget.CoordinatorLayout>
 
     <FrameLayout

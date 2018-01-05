@@ -12,12 +12,13 @@ import com.leopold.mvp.App
 import com.leopold.mvp.R
 import com.leopold.mvp.component.DaggerActivityComponent
 import com.leopold.mvp.extensions.setToolbar
-import com.leopold.mvp.model.Repository
+import com.leopold.mvp.model.repository.Repository
 import com.leopold.mvp.network.error.ErrorResponse
 import com.leopold.mvp.presenter.ActivityPresenterModule
 import com.leopold.mvp.presenter.BasePresenter
 import com.leopold.mvp.presenter.main.MainPresenter
 import com.leopold.mvp.ui.PresenterActivity
+import com.leopold.mvp.ui.widget.recycler.EndlessLinearRecyclerListener
 import com.leopold.mvp.ui.widget.recycler.OnItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -29,10 +30,12 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
     private lateinit var drawerToggle: ActionBarDrawerToggle
     @Inject lateinit var presenter: MainPresenter
     private var adapter: RepositoryRecyclerAdapter? = null
+    private var endless: EndlessLinearRecyclerListener? = null
 
     private val toolbar by lazy { main_toolbar }
     private val refreshLayout by lazy { main_refresh_layout }
     private val recyclerView by lazy { main_recycler_view }
+    private val moreProgress by lazy { main_more_progress }
 
     override fun getPresenter(): BasePresenter<MainPresenter.View>? {
         return presenter
@@ -55,10 +58,17 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
 
         setToolbar(toolbar, R.string.app_name)
 
-        refreshLayout.isEnabled = false
+        val layoutManager = LinearLayoutManager(this)
+        endless = object : EndlessLinearRecyclerListener(layoutManager) {
+            override fun onLoadMore() {
+                presenter.onLoadMore()
+            }
+        }
 
         recyclerView.setHasFixedSize(false)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.addOnScrollListener(endless)
+        recyclerView.layoutManager = layoutManager
+        refreshLayout.setOnRefreshListener { presenter.onRefresh() }
 
         presenter.searchRepositories()
     }
@@ -73,6 +83,8 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
     }
 
     override fun onDestroy() {
+        endless = null
+        recyclerView?.clearOnScrollListeners()
         drawer?.removeDrawerListener(drawerToggle)
         super.onDestroy()
     }
@@ -98,8 +110,13 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
         refreshLayout.isRefreshing = true
     }
 
+    override fun showMoreProgress() {
+        moreProgress.visibility = View.VISIBLE
+    }
+
     override fun hideProgress() {
         refreshLayout.isRefreshing = false
+        moreProgress.visibility = View.GONE
     }
 
     override fun setAdapter(repositories: ArrayList<Repository>) {
@@ -109,7 +126,13 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
                 recyclerView.adapter = this
             }
         } else {
-            adapter?.replace(repositories)
+            adapter?.run {
+                if (presenter.isMoreLoading()) {
+                    this.concat(repositories)
+                } else {
+                    this.replace(repositories)
+                }
+            }
         }
     }
 
