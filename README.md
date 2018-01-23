@@ -25,7 +25,7 @@ Android MVP architecture in Kotlin using Dagger2, RxJava2, Retrofit2
 
 ## License
 
-    Copyright 2017, JoongWon
+    Copyright 2017, Leopold Baik
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
