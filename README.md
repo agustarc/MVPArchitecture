@@ -1,4 +1,5 @@
 ![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-KotlinMVPArchitecture-green.svg?style=flat )
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # KotlinMVPArchitecture
 Android MVP architecture in Kotlin using Dagger2, RxJava2, Retrofit2
