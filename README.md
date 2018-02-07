@@ -1,8 +1,7 @@
 ![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-KotlinMVPArchitecture-green.svg?style=flat )
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/joongwon/KotlinMVPArchitecture/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://github.com/joongwon/KotlinMVPArchitecture/pull/)
-[![GitHub version](https://badge.fury.io/gh/Naereen%2FStrapDown.js.svg)](https://github.com/joongwon/KotlinMVPArchitecture)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/Naereen/StrapDown.js.svg)](https://github.com/joongwon/KotlinMVPArchitecture/pulls/)
 
 # KotlinMVPArchitecture
 Android MVP architecture in Kotlin using Dagger2, RxJava2, Retrofit2
