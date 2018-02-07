@@ -6,7 +6,7 @@ import android.os.Bundle
  * @author Leopold
  */
 abstract class InjectableActivity : BaseActivity() {
-    abstract fun inject(): Unit
+    abstract fun inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

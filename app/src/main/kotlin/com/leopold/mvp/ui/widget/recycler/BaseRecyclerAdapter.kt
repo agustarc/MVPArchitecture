@@ -9,7 +9,7 @@ import java.util.*
 /**
  * @author Leopold
  */
-abstract class BaseRecyclerAdapter<T> constructor(val context: Context, var items: ArrayList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseRecyclerAdapter<T> constructor(val context: Context, private var items: ArrayList<T>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val inflater: LayoutInflater = LayoutInflater.from(context)
     var listener: OnItemClickListener? = null
 

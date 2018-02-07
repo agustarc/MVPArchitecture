@@ -19,9 +19,9 @@ import kotlinx.android.synthetic.main.layout_repository_item.view.*
 class RepositoryRecyclerAdapter constructor(context: Context, repositories: ArrayList<Repository>) : BaseRecyclerAdapter<Repository>(context, repositories) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        when (viewType) {
+        return when (viewType) {
             RecyclerViewType.VIEW_TYPE_ITEM -> {
-                return RepositoryViewHolder(inflater.inflate(R.layout.layout_repository_item, parent, false), listener)
+                RepositoryViewHolder(inflater.inflate(R.layout.layout_repository_item, parent, false), listener)
             }
 
             else -> throw UnsupportedOperationException("Unsupported viewType : " + viewType)

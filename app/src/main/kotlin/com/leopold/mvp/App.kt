@@ -20,10 +20,6 @@ class App: Application() {
                 .build()
     }
 
-    override fun onCreate() {
-        super.onCreate()
-    }
-
     companion object {
         fun getAppComponent(context: Context): AppComponent {
             return (context.applicationContext as App).singleton

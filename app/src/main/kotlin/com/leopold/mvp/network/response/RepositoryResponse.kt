@@ -8,7 +8,7 @@ import com.leopold.mvp.model.repository.Repository
  * @author Leopold
  */
 data class RepositoryResponse(
-        @SerializedName("total_count") val count: Int,
+        @SerializedName("total_count") private val count: Int,
         @SerializedName("incomplete_results") val incompleteResults: Boolean,
         @SerializedName("items") val items: ArrayList<Repository>
 ) : Pageable {

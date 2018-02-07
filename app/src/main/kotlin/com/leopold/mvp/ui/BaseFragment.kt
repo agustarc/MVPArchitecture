@@ -15,7 +15,7 @@ abstract class BaseFragment : Fragment() {
     @LayoutRes protected abstract fun getLayoutResId(): Int
 
     @CallSuper
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(getLayoutResId(), container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(getLayoutResId(), container, false)
     }
 }

@@ -10,8 +10,11 @@ import java.net.SocketTimeoutException
 /**
  * @author Leopold
  */
-class RetrofitException(override val message: String?, val response: Response<*>?,
-                        val kind: ErrorKind, val exception: Throwable?, val retrofit: Retrofit?) : RuntimeException(message, exception) {
+class RetrofitException(override val message: String?,
+                        private val response: Response<*>?,
+                        val kind: ErrorKind,
+                        private val exception: Throwable?,
+                        val retrofit: Retrofit?) : RuntimeException(message, exception) {
 
     fun isTimeout(): Boolean {
         return exception is SocketTimeoutException

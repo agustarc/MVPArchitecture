@@ -16,14 +16,15 @@ import java.net.CookiePolicy
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+private const val CONNECT_TIMEOUT: Long = 30
+private const val WRITE_TIMEOUT: Long = 30
+private const val READ_TIMEOUT: Long = 30
+
 /**
  * @author Leopold
  */
 @Module
 class NetworkModule {
-    private val CONNECT_TIMEOUT: Long = 30
-    private val WRITE_TIMEOUT: Long = 30
-    private val READ_TIMEOUT: Long = 30
     private val baseUrl: String = "https://api.github.com"
 
     @Provides
@@ -42,7 +43,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(cache: Cache, interceptor: Interceptor): OkHttpClient {
-        val logger: HttpLoggingInterceptor = HttpLoggingInterceptor()
+        val logger = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) {
             logger.level = HttpLoggingInterceptor.Level.BODY
         }

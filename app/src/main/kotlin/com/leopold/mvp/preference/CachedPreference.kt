@@ -14,7 +14,7 @@ abstract class CachedPreference constructor(private val context: Context, privat
         preLoad()
     }
 
-    private fun preLoad(): Unit {
+    private fun preLoad() {
         val all: MutableMap<String, *> = getSharedPreferences().all
         all.keys
                 .filter { k: String? -> k != null }
@@ -38,11 +38,11 @@ abstract class CachedPreference constructor(private val context: Context, privat
         return defaultValue
     }
 
-    fun hasKey(key: String): Boolean {
+    private fun hasKey(key: String): Boolean {
         return cache.containsKey(key)
     }
 
-    fun put(key: String, value: Any?): Unit {
+    fun put(key: String, value: Any?) {
         cache.put(key, value)
 
         val editor: SharedPreferences.Editor = getSharedPreferences().edit()
@@ -57,7 +57,7 @@ abstract class CachedPreference constructor(private val context: Context, privat
         editor.apply()
     }
 
-    fun clear(): Unit {
+    fun clear() {
         cache.clear()
 
         val editor: SharedPreferences.Editor = getSharedPreferences().edit()

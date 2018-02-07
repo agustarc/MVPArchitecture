@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 /**
  * @author Leopold
  */
-abstract class EndlessLinearRecyclerListener(val lm: LinearLayoutManager) : EndlessRecyclerListener() {
+abstract class EndlessLinearRecyclerListener(private val lm: LinearLayoutManager) : EndlessRecyclerListener() {
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)

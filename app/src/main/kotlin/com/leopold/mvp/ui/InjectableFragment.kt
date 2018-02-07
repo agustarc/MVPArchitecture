@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment
  * @author Leopold
  */
 abstract class InjectableFragment : BaseFragment() {
-    protected abstract fun inject(@NonNull fragment: Fragment): Unit
+    protected abstract fun inject(@NonNull fragment: Fragment)
 
     @CallSuper
     override fun onAttach(context: Context?) {

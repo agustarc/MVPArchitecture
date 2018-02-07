@@ -22,11 +22,13 @@ class NavigationFragment : PresenterFragment<NavigationPresenter.View>(), Naviga
     }
 
     override fun inject(fragment: Fragment) {
-        DaggerFragmentComponent.builder()
-                .appComponent(App.getAppComponent(fragment.context))
-                .fragmentModule(FragmentModule(this))
-                .fragmentPresenterModule(FragmentPresenterModule())
-                .build().inject(this)
+        fragment.context?.run {
+            DaggerFragmentComponent.builder()
+                    .appComponent(App.getAppComponent(this))
+                    .fragmentModule(FragmentModule(this@NavigationFragment))
+                    .fragmentPresenterModule(FragmentPresenterModule())
+                    .build().inject(this@NavigationFragment)
+        }
     }
 
     override fun getLayoutResId(): Int {

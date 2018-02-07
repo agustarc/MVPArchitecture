@@ -13,9 +13,11 @@ class NavigationPresenter constructor(context: Fragment) : BaseFragmentPresenter
     override var view: View? = context as View
 
     init {
-        DaggerPresenterComponent.builder()
-                .appComponent(App.getAppComponent(context.context))
-                .build().inject(this)
+        context.context?.run {
+            DaggerPresenterComponent.builder()
+                    .appComponent(App.getAppComponent(this))
+                    .build().inject(this@NavigationPresenter)
+        }
     }
 
     interface View : PresenterView
