@@ -36,7 +36,7 @@ class RepositoryRecyclerAdapter constructor(context: Context, repositories: Arra
     }
 
     private fun onBindRepositoryViewHolder(holder: RepositoryViewHolder, position: Int) {
-        getItem(position)?.run {
+        getItem(position).run {
             setName(holder, position, this)
             setDescription(holder, this)
         }

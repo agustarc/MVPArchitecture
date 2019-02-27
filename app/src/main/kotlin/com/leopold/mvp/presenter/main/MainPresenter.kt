@@ -4,11 +4,11 @@ import android.app.Activity
 import com.leopold.mvp.App
 import com.leopold.mvp.component.DaggerPresenterComponent
 import com.leopold.mvp.constant.LoadingType
+import com.leopold.mvp.extensions.forNetwork
 import com.leopold.mvp.model.Pagination
 import com.leopold.mvp.model.repository.Repository
 import com.leopold.mvp.network.ApiModule
 import com.leopold.mvp.network.ApiQueryParam
-import com.leopold.mvp.network.RxObservableConverter
 import com.leopold.mvp.network.api.GitHubApi
 import com.leopold.mvp.network.response.RepositoryResponse
 import com.leopold.mvp.presenter.BasePresenter
@@ -20,7 +20,8 @@ import javax.inject.Inject
  */
 class MainPresenter constructor(context: Activity) : BasePresenter<MainPresenter.View>() {
     override var view: View? = context as View
-    @Inject lateinit var api: GitHubApi
+    @Inject
+    lateinit var api: GitHubApi
 
     private var loadingType: LoadingType = LoadingType.NONE
     private val pagination: Pagination<RepositoryResponse> = Pagination.newInstance()
@@ -46,7 +47,7 @@ class MainPresenter constructor(context: Activity) : BasePresenter<MainPresenter
                 this[ApiQueryParam.ORDER] = "asc"
             }
 
-            addToDisposable(RxObservableConverter.forNetwork(api.searchRepositories(params))
+            addToDisposable(api.searchRepositories(params).forNetwork()
                     .subscribe({
                         this.hideProgress()
                         this.setAdapter(it.items)
@@ -74,9 +75,7 @@ class MainPresenter constructor(context: Activity) : BasePresenter<MainPresenter
         searchRepositories()
     }
 
-    fun isMoreLoading(): Boolean {
-        return loadingType == LoadingType.MORE
-    }
+    fun isMoreLoading() = loadingType == LoadingType.MORE
 
     interface View : NetworkPresenterView {
         fun showProgress()

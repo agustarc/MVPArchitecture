@@ -17,16 +17,20 @@ abstract class BasePresenter<T> {
     abstract var view: T?
 
     @CallSuper
-    open fun onCreate() {}
+    open fun onCreate() {
+    }
 
     @CallSuper
-    open fun onResume() {}
+    open fun onResume() {
+    }
 
     @CallSuper
-    open fun onPause() {}
+    open fun onPause() {
+    }
 
     @CallSuper
-    open fun onStop() {}
+    open fun onStop() {
+    }
 
     @CallSuper
     fun onDestroy() {
@@ -35,16 +39,13 @@ abstract class BasePresenter<T> {
         view = null
     }
 
-    protected fun isTimeoutError(throwable: Throwable): Boolean {
-        return throwable is SocketTimeoutException
-    }
+    protected fun isTimeoutError(throwable: Throwable) = throwable is SocketTimeoutException
 
-    protected fun getPageParams(pagination: Pagination<Pageable>): MutableMap<String, String> {
-        val params: MutableMap<String, String> = mutableMapOf()
-        params[ApiQueryParam.PAGE] = pagination.pageNum.toString()
-        params[ApiQueryParam.PER_PAGE] = pagination.pageSize.toString()
-        return params
-    }
+    protected fun getPageParams(pagination: Pagination<Pageable>) =
+            mutableMapOf<String, String>().apply {
+                this[ApiQueryParam.PAGE] = pagination.pageNum.toString()
+                this[ApiQueryParam.PER_PAGE] = pagination.pageSize.toString()
+            }
 
     protected fun addToDisposable(disposable: Disposable) {
         disposables?.add(disposable)

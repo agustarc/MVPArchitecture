@@ -3,7 +3,6 @@ package com.leopold.mvp.ui.widget.recycler
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
-import com.leopold.mvp.util.CollectionUtil
 import java.util.*
 
 /**
@@ -17,17 +16,9 @@ abstract class BaseRecyclerAdapter<T> constructor(val context: Context, private 
         this.listener = listener
     }
 
-    open fun getItem(position: Int): T? {
-        return CollectionUtil.get(position, items)
-    }
-
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return RecyclerViewType.VIEW_TYPE_ITEM
-    }
+    open fun getItem(position: Int) = items[position]
+    override fun getItemCount() = items.size
+    override fun getItemViewType(position: Int) = RecyclerViewType.VIEW_TYPE_ITEM
 
     fun replace(items: ArrayList<T>) {
         this.items = items

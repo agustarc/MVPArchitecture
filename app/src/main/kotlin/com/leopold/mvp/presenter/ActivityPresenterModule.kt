@@ -14,8 +14,6 @@ class ActivityPresenterModule {
 
     @Provides
     @UserScope
-    fun provideMainPresenter(context: Activity): MainPresenter {
-        return MainPresenter(context)
-    }
+    fun provideMainPresenter(context: Activity) = MainPresenter(context)
 
 }

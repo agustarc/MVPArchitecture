@@ -12,10 +12,8 @@ import javax.inject.Singleton
  * @author Leopold
  */
 @Singleton
-@Component(modules = arrayOf(
-        AppModule::class,
-        PreferenceModule::class,
-        NetworkModule::class)
+@Component(
+        modules = [AppModule::class, PreferenceModule::class, NetworkModule::class]
 )
 interface AppComponent {
     fun retrofit(): Retrofit

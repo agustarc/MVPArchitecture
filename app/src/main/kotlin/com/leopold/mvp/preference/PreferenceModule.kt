@@ -13,8 +13,6 @@ class PreferenceModule {
 
     @Provides
     @Singleton
-    fun provideSettingPreference(app: App): SettingPreference {
-        return SettingPreference(app)
-    }
+    fun provideSettingPreference(app: App) = SettingPreference(app)
 
 }

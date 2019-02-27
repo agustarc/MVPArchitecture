@@ -10,7 +10,10 @@ import dagger.Component
  * @author Leopold
  */
 @UserScope
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(ApiModule::class))
+@Component(
+        dependencies = [AppComponent::class],
+        modules = [ApiModule::class]
+)
 interface PresenterComponent {
     fun inject(presenter: MainPresenter)
     fun inject(presenter: NavigationPresenter)

@@ -10,7 +10,7 @@ import com.leopold.mvp.preference.PreferenceModule
 /**
  * @author Leopold
  */
-class App: Application() {
+class App : Application() {
 
     val singleton: AppComponent by lazy {
         DaggerAppComponent.builder()

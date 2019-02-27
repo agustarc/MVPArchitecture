@@ -10,9 +10,9 @@ import dagger.Component
  * @author Leopold
  */
 @UserScope
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(
-        ActivityPresenterModule::class,
-        ActivityModule::class)
+@Component(
+        dependencies = [AppComponent::class],
+        modules = [ActivityPresenterModule::class, ActivityModule::class]
 )
 interface ActivityComponent {
     fun inject(context: MainActivity)

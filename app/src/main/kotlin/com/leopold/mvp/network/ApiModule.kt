@@ -14,8 +14,6 @@ class ApiModule {
 
     @Provides
     @UserScope
-    fun provideGitHubApi(retrofit: Retrofit): GitHubApi {
-        return retrofit.create(GitHubApi::class.java)
-    }
+    fun provideGitHubApi(retrofit: Retrofit): GitHubApi = retrofit.create(GitHubApi::class.java)
 
 }

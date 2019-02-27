@@ -36,25 +36,22 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGs(): Gson {
-        return GsonBuilder().create()
-    }
+    fun provideGs(): Gson = GsonBuilder().create()
 
     @Provides
     @Singleton
     fun provideOkHttpClient(cache: Cache, interceptor: Interceptor): OkHttpClient {
-        val logger = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG) {
-            logger.level = HttpLoggingInterceptor.Level.BODY
-        }
-
         return OkHttpClient.Builder()
                 .cache(cache)
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .cookieJar(JavaNetCookieJar(CookieManager(null, CookiePolicy.ACCEPT_ALL)))
-                .addInterceptor(logger)
+                .addInterceptor(HttpLoggingInterceptor().apply {
+                    if (BuildConfig.DEBUG) {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    }
+                })
                 .addInterceptor(interceptor)
                 .build()
     }

@@ -28,7 +28,8 @@ import javax.inject.Inject
  */
 class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View, OnItemClickListener {
     private lateinit var drawerToggle: ActionBarDrawerToggle
-    @Inject lateinit var presenter: MainPresenter
+    @Inject
+    lateinit var presenter: MainPresenter
     private var adapter: RepositoryRecyclerAdapter? = null
 
     private val toolbar by lazy { main_toolbar }

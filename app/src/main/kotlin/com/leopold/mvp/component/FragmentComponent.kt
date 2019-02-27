@@ -10,9 +10,9 @@ import dagger.Component
  * @author Leopold
  */
 @UserScope
-@Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(
-        FragmentPresenterModule::class,
-        FragmentModule::class)
+@Component(
+        dependencies = [AppComponent::class],
+        modules = [FragmentPresenterModule::class, FragmentModule::class]
 )
 interface FragmentComponent {
     fun inject(context: NavigationFragment)

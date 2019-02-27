@@ -15,7 +15,8 @@ import javax.inject.Inject
  * @author Leopold
  */
 class NavigationFragment : PresenterFragment<NavigationPresenter.View>(), NavigationPresenter.View {
-    @Inject lateinit var presenter: NavigationPresenter
+    @Inject
+    lateinit var presenter: NavigationPresenter
 
     override fun getPresenter(): BaseFragmentPresenter<NavigationPresenter.View>? {
         return presenter
