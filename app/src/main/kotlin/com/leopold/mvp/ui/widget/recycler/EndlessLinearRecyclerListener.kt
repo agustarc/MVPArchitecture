@@ -1,7 +1,8 @@
 package com.leopold.mvp.ui.widget.recycler
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
 
 /**
  * @author Leopold

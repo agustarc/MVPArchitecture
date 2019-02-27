@@ -1,6 +1,6 @@
 package com.leopold.mvp.presenter.main
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.leopold.mvp.App
 import com.leopold.mvp.component.DaggerPresenterComponent
 import com.leopold.mvp.presenter.BaseFragmentPresenter

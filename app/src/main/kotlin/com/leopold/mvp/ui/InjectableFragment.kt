@@ -3,7 +3,7 @@ package com.leopold.mvp.ui
 import android.content.Context
 import android.support.annotation.CallSuper
 import android.support.annotation.NonNull
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 /**
  * @author Leopold

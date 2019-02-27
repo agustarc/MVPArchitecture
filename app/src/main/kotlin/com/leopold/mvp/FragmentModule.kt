@@ -1,6 +1,6 @@
 package com.leopold.mvp
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.leopold.mvp.annotation.UserScope
 import dagger.Module
 import dagger.Provides

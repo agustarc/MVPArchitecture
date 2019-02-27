@@ -13,16 +13,20 @@ abstract class BaseFragmentPresenter<T> {
     abstract var view: T?
 
     @CallSuper
-    open fun onCreate() {}
+    open fun onCreate() {
+    }
 
     @CallSuper
-    open fun onResume() {}
+    open fun onResume() {
+    }
 
     @CallSuper
-    open fun onPause() {}
+    open fun onPause() {
+    }
 
     @CallSuper
-    open fun onStop() {}
+    open fun onStop() {
+    }
 
     @CallSuper
     open fun onDestroyView() {
@@ -31,10 +35,7 @@ abstract class BaseFragmentPresenter<T> {
         view = null
     }
 
-    protected fun isTimeoutError(throwable: Throwable): Boolean {
-        return throwable is SocketTimeoutException
-    }
-
+    protected fun isTimeoutError(throwable: Throwable) = throwable is SocketTimeoutException
     protected fun addToDisposable(disposable: Disposable) {
         disposables?.add(disposable)
     }

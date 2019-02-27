@@ -3,21 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
-ext {
-    supportLibVersion = '27.0.2'
-    retrofitVersion = '2.3.0'
-    okHttpVersion = '3.4.1'
-    daggerVersion = '2.8'
-}
-
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.leopold.mvp"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -64,19 +56,19 @@ android {
 
 dependencies {
     // Support Library
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:cardview-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
-    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
+    implementation "com.google.android.material:material:$support"
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "androidx.cardview:cardview:$support"
+    implementation "androidx.recyclerview:recyclerview:$support"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha3"
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Dagger 2.0
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    provided 'javax.annotation:jsr250-api:1.0'
+    compileOnly 'javax.annotation:jsr250-api:1.0'
 
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -89,8 +81,4 @@ dependencies {
     // RX
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-
-    // Glide
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 }

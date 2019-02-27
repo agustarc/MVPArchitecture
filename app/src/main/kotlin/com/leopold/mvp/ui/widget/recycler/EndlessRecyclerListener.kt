@@ -1,6 +1,6 @@
 package com.leopold.mvp.ui.widget.recycler
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 
 const val VISIBLE_THRESHOLD = 5
 

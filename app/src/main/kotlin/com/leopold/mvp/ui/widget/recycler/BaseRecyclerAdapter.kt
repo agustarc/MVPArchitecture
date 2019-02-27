@@ -1,8 +1,8 @@
 package com.leopold.mvp.ui.widget.recycler
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import androidx.recyclerview.widget.RecyclerView
 import com.leopold.mvp.util.CollectionUtil
 import java.util.*
 

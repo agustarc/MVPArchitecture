@@ -2,11 +2,11 @@ package com.leopold.mvp.ui.main
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.leopold.mvp.ActivityModule
 import com.leopold.mvp.App
 import com.leopold.mvp.R
@@ -30,7 +30,6 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
     private lateinit var drawerToggle: ActionBarDrawerToggle
     @Inject lateinit var presenter: MainPresenter
     private var adapter: RepositoryRecyclerAdapter? = null
-    private var endless: EndlessLinearRecyclerListener? = null
 
     private val toolbar by lazy { main_toolbar }
     private val refreshLayout by lazy { main_refresh_layout }
@@ -59,7 +58,7 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
         setToolbar(toolbar, R.string.app_name)
 
         val layoutManager = LinearLayoutManager(this)
-        endless = object : EndlessLinearRecyclerListener(layoutManager) {
+        val endless = object : EndlessLinearRecyclerListener(layoutManager) {
             override fun onLoadMore() {
                 presenter.onLoadMore()
             }
@@ -83,7 +82,6 @@ class MainActivity : PresenterActivity<MainPresenter.View>(), MainPresenter.View
     }
 
     override fun onDestroy() {
-        endless = null
         recyclerView?.clearOnScrollListeners()
         drawer?.removeDrawerListener(drawerToggle)
         super.onDestroy()

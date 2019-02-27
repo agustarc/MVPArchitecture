@@ -1,6 +1,6 @@
 package com.leopold.mvp.ui.main
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.leopold.mvp.App
 import com.leopold.mvp.FragmentModule
 import com.leopold.mvp.R
